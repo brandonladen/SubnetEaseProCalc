@@ -1,0 +1,22 @@
+# Compiled Python files
+*.pyc
+__pycache__/
+
+# Virtual environment
+venv/
+env/
+*.env
+
+# IDE or editor files
+.vscode/
+.idea/
+
+# Dependency directories
+node_modules/
+
+# Temporary files
+*.tmp
+*.log
+
+# Configuration files
+config.ini
