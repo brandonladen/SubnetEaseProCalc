@@ -3,15 +3,16 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from .forms import userprofileform
 
+
 # Create your views here.
 def login_user(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        
-        #manualy authenticate user
+
+        # manualy authenticate user
         user = authenticate(request, username=username, password=password)
-        
+
         if user is not None:
             login(request, user)
             messages.success(request, "Successfully logged in")
@@ -20,7 +21,7 @@ def login_user(request):
         else:
             print("Invalid username or password")
             messages.error(request, "Invalid username or password")
-        
+
     return render(request, "login.html")
 
 
@@ -37,6 +38,7 @@ def update_profile(request):
     }
     print(form)
     return render(request, 'core/base.html', context)
+
 
 def logout_user(request):
     logout(request)

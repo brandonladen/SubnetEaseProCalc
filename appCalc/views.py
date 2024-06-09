@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 import requests
 from django.contrib.auth.decorators import login_required
+
+from authentication.forms import userprofileform
 from .models import SubnettingHistory
 from django.views.decorators.http import require_http_methods
 
@@ -8,7 +10,17 @@ from django.views.decorators.http import require_http_methods
 # Create your views here.
 @login_required
 def home(request):
-    return render(request, 'appCalc/index.html')
+    if request.method == 'POST':
+        form = userprofileform(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = userprofileform(instance=request.user)
+    context = {
+        'form': form
+    }
+    return render(request, template_name='appCalc/index.html',context=context)
 
 
 @login_required
