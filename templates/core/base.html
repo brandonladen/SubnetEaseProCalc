@@ -71,7 +71,7 @@
                                        data-subnetmask="{{ i.subnetmask }}"
                                        data-wildcardmask="{{ i.wildcardmask }}"
                                        data-networkbits="{{ i.networkbits }}"
-                                       data-networkaddress="{{ i.networkaddress }}"
+                                       data-networkaddress="{{ i.networkadddress }}"
                                        data-firstip="{{ i.first_ip }}"
                                        data-lastip="{{ i.last_ip }}"
                                        data-broadcastaddress="{{ i.broadcast_address }}">
@@ -129,7 +129,6 @@
             <div class="modal-body">
                 <div class="mb-3">
                     <label class="form-label">IP Address: <span id="ipAddress"></span></label>
-                    <label class="form-label">IP ID: <span id="ipid"></span></label>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Subnet Mask: <span id="subnetMask"></span></label>
@@ -197,7 +196,6 @@
 
             // Update the modal's content.
             var modalTitle = subnethistoryModal.querySelector('.modal-title');
-            var ipidSpan = subnethistoryModal.querySelector('#ipid')
             var ipAddressSpan = subnethistoryModal.querySelector('#ipAddress');
             var subnetMaskSpan = subnethistoryModal.querySelector('#subnetMask');
             var wildcardMaskSpan = subnethistoryModal.querySelector('#wildcardMask');
@@ -209,7 +207,6 @@
 
 
             modalTitle.textContent = 'Subnetting Results for ' + ipaddress;
-            ipidSpan.textContent = ipid;
             ipAddressSpan.textContent = ipaddress;
             subnetMaskSpan.textContent = subnetmask;
             wildcardMaskSpan.textContent = wildcardmask;
@@ -218,12 +215,6 @@
             firstIpSpan.textContent = firstip;
             lastIpSpan.textContent = lastip;
             broadcastAddressSpan.textContent = broadcastaddress;
-        });
-
-        const updateProfileModal = document.getElementById('updateProfileModal');
-        updateProfileModal.addEventListener('show.bs.modal', function (event) {
-            const form = document.getElementById('updateProfileForm');
-            form.action = "{% url 'update_profile' %}";
         });
 
     });
