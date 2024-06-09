@@ -4,23 +4,24 @@ from django.contrib.auth.decorators import login_required
 from .models import SubnettingHistory
 from django.views.decorators.http import require_http_methods
 
+
 # Create your views here.
 @login_required
-def home(request):    
+def home(request):
     return render(request, 'appCalc/index.html')
+
 
 @login_required
 def subnet(request):
     response_data = None
     error_message = None
-    
+
     if request.method == 'POST':
         ipAddress = request.POST.get('ipAddress')
         subnet = request.POST.get('subnet')
         address = f"{ipAddress}/{subnet}"
-        
-        
-        try:        
+
+        try:
             response = requests.get(f"https://networkcalc.com/api/ip/{address}")
 
             if response.status_code == 200:
@@ -43,20 +44,22 @@ def subnet(request):
         except Exception as e:
             error_message = "An unexpected error occurred. Please check your internet and try again."
         # view_subnet_history(request)
-    return render(request, 'appCalc/index.html', {"response": response_data ,'error_message': error_message})
+    return render(request, 'appCalc/index.html', {"response": response_data, 'error_message': error_message})
+
 
 @login_required
 def view_subnet_history(request):
     history = SubnettingHistory.objects.filter(user=request.user)
-    
+
     context = {
-        'history' : history
+        'history': history
     }
     return render(request, 'core/base.html', context)
+
 
 @login_required
 @require_http_methods(["DELETE"])
 def delete_subnet_history(request, pk):
-    subnet = get_object_or_404(SubnettingHistory, pk=pk)
+    subnet = get_object_or_404(SubnettingHistory, pk=int(pk))
     subnet.delete()
     return redirect('home')
