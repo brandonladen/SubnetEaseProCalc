@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from .forms import userprofileform
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -25,6 +26,7 @@ def login_user(request):
     return render(request, "login.html")
 
 
+@login_required(login_url='login')
 def update_profile(request):
     if request.method == 'POST':
         form = userprofileform(request.POST, instance=request.user)
@@ -40,6 +42,7 @@ def update_profile(request):
     return render(request, 'core/base.html', context)
 
 
+@login_required(login_url='login')
 def logout_user(request):
     logout(request)
     return redirect('login')
