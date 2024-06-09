@@ -1,0 +1,101 @@
+{% extends "core/base.html" %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Left Column: Form -->
+        <div class="col-md-5">
+            <h2>Enter IP Address</h2>
+            <form method="POST" action="{% url 'subnet' %}">
+                {% csrf_token %}
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                        <label for="ipAddress" class="form-label">IP Address</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" class="form-control" id="ipAddress" name="ipAddress" placeholder="eg. 192.168.1.1">
+                    </div>
+                    <div class="col-auto">
+                        <span class="mx-2">/</span>
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" class="form-control" id="subnet" name="subnet" placeholder="24" style="width: 60px;">
+                    </div>
+                    {% if request.path == '/subnet/' %}
+                    <div class="col-auto">
+                    <a href="{% url 'home' %}" class="btn btn-primary" title="refresh">
+                            <i class="bi bi-arrow-clockwise"></i>
+                    </a>
+                    </div>
+                    {% endif %}
+                </div>
+                {% if request.path == '/' %}
+                <div class="mt-3">
+                    <button type="submit" class="btn btn-primary">Calculate</button>
+                </div>
+                {% endif %}
+                <div class="mt-3">
+                    <h4 class="text-danger">{{ response.error }}</h4>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Vertical Line -->
+        <div class="col-md-1 position-relative">
+            <div style="border-left: 1px solid #000; height: 100vh; position: absolute; left: 50%; top: 0;"></div>
+        </div>
+
+        <!-- Right Column: Table -->
+        <div class="col-md-6">
+            <h2>Subnetting Results</h2>
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th scope="row">IP Address</th>
+                        <td>{{ response.cidr_notation }}</td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td>{{ binary }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Subnet Mask</th>
+                        <td>{{ response.subnet_mask }}</td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td>{{ binary }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">WildCard Mask</th>
+                        <td>{{ response.wildcard_mask }}</td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td>{{ binary }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Network Bits</th>
+                        <td>{{ response.subnet_bits }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Network Address</th>
+                        <td>{{ response.network_address }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">First IP Address</th>
+                        <td>{{ response.first_assignable_host }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Last IP Address</th>
+                        <td>{{ response.last_assignable_host }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Broadcast Address</th>
+                        <td>{{ response.broadcast_address }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}
