@@ -10,36 +10,64 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css"
           rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+
+     <!-- Fonts -->
+   <link href="https://fonts.googleapis.com" rel="preconnect">
+   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+ 
+   <!-- Vendor CSS Files -->
+   <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+   <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+   <link href="{% static 'assets/vendor/aos/aos.css" rel="stylesheet' %}">
+   <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+   <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+ 
+   <!-- Main CSS File -->
+   <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+
 </head>
 <body>
 <nav class="navbar bg-primary ">
     <div class="container-fluid">
-        <h2><a class="navbar-brand" href="{% url 'home' %}" title="Home" class="fs-1 fw-bold">SubnetEase-Pro-Calc</a>
-        </h2>
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+      <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center">
+    
+          <a href="{% url 'home' %}" class="logo d-flex align-items-center me-auto">
+            <!-- Uncomment the line below if you also wish to use an image logo -->
+            <img src="{% static 'assets/img/logo.png' %}" alt="">
+            <h1 class="sitename">SubnetEaseProCalc</h1>
+          </a>
+
+          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
                 aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+    
+        </div>
+      </header>
+
+        
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" style="background-color: #3D4D6A;">
             <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Welcome {{request.user.username }} </h5>
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="color: white;">Welcome {{request.user.username }} </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                     <li class="nav-item profile-dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">
+                           aria-expanded="false" style="color: white;">
                             <i class="bi bi-person-circle me-2"></i> My Profile
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><p class="dropdown-item"><b>User Name:</b> {{ request.user.username|default:"None" }}
+                        <ul class="dropdown-menu" style="background-color: #3D4D6A;">
+                            <li><p class="dropdown-item" style="color: white;"><b>User Name:</b> {{ request.user.username|default:"None" }}
                             </p></li>
-                            <li><p class="dropdown-item"><b>First Name:</b> {{ request.user.first_name|default:"None" }}
+                            <li><p class="dropdown-item" style="color: white;"><b>First Name:</b> {{ request.user.first_name|default:"None" }}
                             </p></li>
-                            <li><p class="dropdown-item"><b>Last Name:</b> {{ request.user.last_name|default:"None" }}
+                            <li><p class="dropdown-item" style="color: white;"><b>Last Name:</b> {{ request.user.last_name|default:"None" }}
                             </p></li>
-                            <li><p class="dropdown-item"><b>Email:</b> {{ request.user.email|default:"None" }}</p></li>
+                            <li><p class="dropdown-item" style="color: white;"><b>Email:</b> {{ request.user.email|default:"None" }}</p></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -58,13 +86,13 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">
+                           aria-expanded="false" style="color: white;">
                             <i class="bi bi-clock-history"></i> Subnetting History
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" style="background-color: #3D4D6A;">
                             {% for i in history %}
                                 <li>
-                                    <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                    <a class="dropdown-item" href="#"  data-bs-toggle="modal"
                                        data-bs-target="#subnethistoryModal"
                                        data-ipid="{{ i.id }}"
                                        data-ipaddress="{{ i.ipaddress }}"
@@ -75,7 +103,7 @@
                                        data-firstip="{{ i.first_ip }}"
                                        data-lastip="{{ i.last_ip }}"
                                        data-broadcastaddress="{{ i.broadcast_address }}">
-                                        {{ i.ipaddress }} -> {{ i.timecreated }}
+                                        <p style="color: white;">{{ i.ipaddress }} -> {{ i.timecreated }}</p>
                                     </a>
                                 </li>
                             {% endfor %}
@@ -86,7 +114,7 @@
                                 <hr class="dropdown-divider">
                             </li>
                             {% if  history %}
-                                <li><a class="dropdown-item" href="#">Collapse</a></li>
+                                <li><a class="dropdown-item" href="#" style="color: white;">Collapse</a></li>
                             {% endif %}
                         </ul>
                     </li>
