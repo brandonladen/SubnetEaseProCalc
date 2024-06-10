@@ -23,6 +23,17 @@
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
+    .signup-text {
+      margin-top: 15px;
+      text-align: center;
+    }
+    .signup-text a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    .signup-text a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -41,6 +52,9 @@
         </div>
         <button type="submit" class="btn btn-primary btn-block">Submit</button>
       </form>
+      <div class="signup-text">
+        <p>Don't have an account? <a href="{% url 'signup' %}">Sign up with us</a></p>
+      </div>
     </div>
   </div>
 

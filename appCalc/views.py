@@ -8,6 +8,8 @@ from django.views.decorators.http import require_http_methods
 
 
 # Create your views here.
+def landing_page(request):
+    return render(request,'Arsha/index.html')
 @login_required
 def home(request):
     if request.method == 'POST':
