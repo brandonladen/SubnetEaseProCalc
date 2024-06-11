@@ -44,7 +44,6 @@ def login_user(request):
 
         if user is not None:
             login(request, user)
-            messages.success(request, "Successfully logged in")
             print("Successfully logged in")
             return redirect('home')
         else:
