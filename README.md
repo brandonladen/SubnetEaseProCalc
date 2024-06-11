@@ -1,7 +1,5 @@
-Project Name
-============
-
-SubnetEaseProCalc
+Project Name - SubnetEaseProCalc
+=================
 
 Introduction
 ============
