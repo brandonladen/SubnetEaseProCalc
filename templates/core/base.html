@@ -155,6 +155,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                 <!-- Hidden input to store the ipid -->
+                 <input type="hidden" id="ipid">
                 <div class="mb-3">
                     <label class="form-label">IP Address: <span id="ipAddress"></span></label>
                 </div>
@@ -188,16 +190,13 @@
     </div>
 </div>
 
-<div class="container">
-    {% if error_message %}
-        <div class="alert alert-danger mt-3" role="alert">
-            {{ error_message }}
-        </div>
-    {% endif %}
-</div>
 
-{% block content %}
-{% endblock content %}
+  <main>
+      {% block content %}
+      {% endblock %}
+  </main>
+
+
 <div class="card-footer bg-dark fixed-bottom">
     Card footer
 </div>
@@ -224,6 +223,7 @@
 
             // Update the modal's content.
             var modalTitle = subnethistoryModal.querySelector('.modal-title');
+            var ipidSpan = subnethistoryModal.querySelector('#ipid')
             var ipAddressSpan = subnethistoryModal.querySelector('#ipAddress');
             var subnetMaskSpan = subnethistoryModal.querySelector('#subnetMask');
             var wildcardMaskSpan = subnethistoryModal.querySelector('#wildcardMask');
@@ -235,6 +235,7 @@
 
 
             modalTitle.textContent = 'Subnetting Results for ' + ipaddress;
+            ipidSpan.textContent = ipid;
             ipAddressSpan.textContent = ipaddress;
             subnetMaskSpan.textContent = subnetmask;
             wildcardMaskSpan.textContent = wildcardmask;

@@ -10,6 +10,7 @@ from django.views.decorators.http import require_http_methods
 # Create your views here.
 def landing_page(request):
     return render(request,'appCalc/landing.html')
+
 @login_required
 def home(request):
     if request.method == 'POST':
@@ -40,8 +41,7 @@ def subnet(request):
 
             if response.status_code == 200:
                 response_data = response.json()["address"]
-            else:
-                response_data = {"error": "Error: Invalid address!"}
+
             SubnettingHistory.objects.create(
                 user=request.user,
                 ipaddress=response_data['cidr_notation'],
@@ -56,9 +56,8 @@ def subnet(request):
         except ConnectionError:
             error_message = "Failed to connect to the network service. Please check your internet connection and try again."
         except Exception as e:
-            error_message = "An unexpected error occurred. Please check your internet and try again."
-        # view_subnet_history(request)
-    return render(request, 'appCalc/index.html', {"response": response_data, 'error_message': error_message})
+            error_message = "An unexpected error occurred. \nPlease try the following:\n1. Check your internet connection and try again.\n2. Ensure that the address you entered is valid."  
+    return render(request, 'appCalc/index.html', {"results": response_data, 'error_message': error_message})
 
 
 @login_required
