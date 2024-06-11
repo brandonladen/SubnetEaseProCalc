@@ -12,6 +12,10 @@ Deployed Site: [coming soon]
 Final Project Blog Article: [https://medium.com/@brandonladen486/subneteaseprocalc-simplifying-subnetting-for-everyone-alx-portfolio-project-802391cbd00c]
 Author's LinkedIn: [https://www.linkedin.com/in/brandon-odhiambo-40b91a25a]
 
+- [Deployed Site: ](https://github.com/brandonladen)
+- [Final Project Blog Article:](https://medium.com/@brandonladen486/subneteaseprocalc-simplifying-subnetting-for-everyone-alx-portfolio-project-802391cbd00c)
+- [Author's LinkedIn:](https://www.linkedin.com/in/brandon-odhiambo-40b91a25a)
+
 Installation
 ============
 
