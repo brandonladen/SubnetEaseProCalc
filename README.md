@@ -6,7 +6,7 @@ Introduction
 
 This project is an IP Subnet Calculator, which helps users to calculate and understand subnet information based on their input. It leverages the power of APIs to fetch subnet data and dynamically updates the user interface using AJAX. The project is designed to be user-friendly and efficient, providing quick and accurate results for network professionals and students.
 
-- [Deployed Site: ](https://github.com/brandonladen)
+- [Deployed Site: ](https://subneteaseprocalc.onrender.com/)
 - [Final Project Blog Article:](https://medium.com/@brandonladen486/subneteaseprocalc-simplifying-subnetting-for-everyone-alx-portfolio-project-802391cbd00c)
 - [Author's LinkedIn:](https://www.linkedin.com/in/brandon-odhiambo-40b91a25a)
 
